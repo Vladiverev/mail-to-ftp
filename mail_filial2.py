@@ -25,6 +25,7 @@ import ftplib
 import openpyxl as xl
 from xml.sax import ContentHandler, parse
 import pandas as pd
+import urllib.request
 
 Pharmacy = 'pharmacy.json'
 Mail_login = 'm_login.json'
@@ -121,8 +122,8 @@ def csv_xls(id, js_cs, csv_file):
     workbook = Workbook()
     worksheet = workbook.add_sheet('Sheet 1')
     xls_name = csv_file[:-4] + '.xls'
-    with open(csv_file, 'rt', encoding='utf8') as f:
-        reader = csv.reader(f)
+    with open(csv_file, 'rt', encoding='utf-8', errors='ignore') as f:
+        reader = csv.reader(f, delimiter = ';')
         for r, row in enumerate(reader):
             for c, col in enumerate(row):
                 worksheet.write(r, c, col)
@@ -135,7 +136,7 @@ def dbf_csv(id, js_db, name):
     csv_fn = name[:-4] + ".csv"
 
     with open(csv_fn, 'w') as f:
-        writer = csv.writer(f)
+        writer = csv.writer(f, delimiter = ';')
         writer.writerow(table.field_names)
         for record in table:
             writer.writerow(list(record.values()))
@@ -192,9 +193,12 @@ def re_name(js_rn, file_name):
             print(file_n)
 
 
+
+
 def main_loop(js_d):
     login = json_f(Mail_login)[js_d[0]['mail']]
     print(json_f(Mail_login))
+
     print(login)
     Miro_HOST = login[0]['Miro_HOST']
     print(Miro_HOST)
@@ -208,7 +212,7 @@ def main_loop(js_d):
     print("Logged in! Listing messages...")
     imap4.select('INBOX')
     # nmessages = select_data[0].decode('utf-8')
-    status, search_data = imap4.search(None, 'FROM', js_d[0]['email'])
+    status, search_data = imap4.search(None, 'FROM', js_d[0]['address'])
     for msg_id in search_data[0].split():
         # msg_id_str = msg_id.decode('utf-8')
         # print("Fetching message {} of {}".format(msg_id_str, nmessages))
@@ -232,7 +236,7 @@ def main_loop(js_d):
                                filename[0][0].decode(filename[0][1])
                     dir_name = os.path.dirname(filename)
                     subprocess.call('mkdir -p {}'.format(dir_name), shell=True)
-                    print(filename + 'decode')
+                    print('decode_' + filename)
                     with open(filename, 'wb') as new_file:
                         new_file.write(f.get_payload(decode=True))
                     text.write(time.strftime("%b_%d_%Y_%H_%M_") + '  ' + filename + '\n')
@@ -244,7 +248,7 @@ def main_loop(js_d):
                                filename
                     dir_name = os.path.dirname(filename)
                     subprocess.call('mkdir -p {}'.format(dir_name), shell=True)
-                    print(filename)
+                    print('not_decod_' + filename)
                     with open(filename, 'wb') as new_file:
                         new_file.write(f.get_payload(decode=True))
                     text.write(time.strftime("%b_%d_%Y_%H_%M_") + '  ' + filename + '\n')
@@ -259,15 +263,26 @@ def main_loop(js_d):
 
 
 
+def url_f(js_u):
+    file_n = './mail/' + js_u[0]['client'] + '/' + time.strftime("%b_%d") + '/' + js_u[0]['file']
+    dir_name = os.path.dirname(file_n)
+    subprocess.call('mkdir -p {}'.format(dir_name), shell=True)
+    print('url' + file_n)
+    with urllib.request.urlopen(js_u[0]['address']) as response, open(file_n, 'wb') as out_file:
+        shutil.copyfileobj(response, out_file)
+        re_name(js_u, file_n)
 
-def try_p(pharm):
-        try:
-            main_loop(pharm)
-        except Exception as e:
-            print("ERROR:" + str(e))
-            text.write('\n' + time.strftime("%b_%d_%Y_%H_%M_") + '  ' + "ERROR:" + str(e) + '\n' + '\n')
-        # print("Sleeping {} seconds...".format(pause_time))
-        # time.sleep(pause_time)
+
+def try_lg(js_l):
+    try:
+        if js_l[0]['mail'] == 'price' or js_l[0]['mail'] == 'lesmed':
+            main_loop(js_l)
+        elif js_l[0]['mail'] == 'url':
+            url_f(js_l)
+    except Exception as e:
+        print("ERROR:" + str(e))
+        text.write('\n' + '\n' + time.strftime("%b_%d_%Y_%H_%M_") + '  ' + "ERROR:" + str(e) + '\n' + '\n')
+
 
 
 def pharmacy_name(pharmacy):
@@ -275,7 +290,7 @@ def pharmacy_name(pharmacy):
         json_p = json_f(pharmacy)[p]
         text.write('\n' + time.strftime("%b_%d_%Y_%H_%M_") + p + '\n')
         print(json_p)
-        try_p(json_p)
+        try_lg(json_p)
         print('finish')
 
 

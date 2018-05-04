@@ -33,7 +33,7 @@
 	       		"Медлайф Сталінграда16": "1558",
 	       		"Київ Апт.вул.ГероївДніпра67": "1118"
 	       	},
-            "email": "admin@lufarm.kiev.ua",
+            "address": "admin@lufarm.kiev.ua",
             "mail": "price",
             "name_r": "1",
             "amount_r": "3",
@@ -48,7 +48,7 @@
 	       		"LFK70": "1113"
 	       	},
 	       	"mail": "price",
-            "email": "atm2@galafarm.com.ua",
+            "address": "atm2@galafarm.com.ua",
             "name_r": "1",
             "amount_r": "2",
             "first_c": "1"                 
@@ -61,7 +61,7 @@
 	       		"LFK31": "1119"
 	       	},
 	       	"mail": "price",
-            "email": "apteka-2@i.ua",
+            "address": "apteka-2@i.ua",
             "name_r": "1",
             "amount_r": "2",
             "first_c": "1"                 
@@ -74,7 +74,7 @@
 	       		"Прайс ЛОП ТОВ Astra": "508"
 	       	},
 	       	"mail": "price",
-            "email": "SLobanova@astramed.com.ua",
+            "address": "SLobanova@astramed.com.ua",
             "name_r": "0",
             "amount_r": "1",
             "first_c": "1"                 
@@ -87,7 +87,7 @@
 	       		"bcph": "35"
 	       	},
 	       	"mail": "price",
-            "email": "vkulikovskiy@bcph.com.ua",
+            "address": "vkulikovskiy@bcph.com.ua",
             "name_r": "0",
             "amount_r": "1",
             "first_c": "1"                 
@@ -107,7 +107,7 @@
 	       		"farmasfera_7": "3177"
 	       	},
 	       	"mail": "price",
-            "email": "price.apteki@gmail.com",
+            "address": "price.apteki@gmail.com",
             "name_r": "0",
             "amount_r": "1",
             "first_c": "1"                 
@@ -121,7 +121,7 @@
 	       		"DODO-Melnikova-10": "24"
 	       	},
 	       	"mail": "price",
-            "email": "dodo-kiev@ukr.net",
+            "address": "dodo-kiev@ukr.net",
             "name_r": "1",
             "amount_r": "2",
             "first_c": "0"                 
@@ -136,7 +136,7 @@
 	       		"Галицкая,13": "684"
 	       	},
 	       	"mail": "price",
-            "email": "socadap@ukr.net",
+            "address": "socadap@ukr.net",
             "name_r": "0",
             "amount_r": "1",
             "first_c": "1"                 
@@ -149,7 +149,7 @@
 	       		"АптекаОлфаГероевСталинграда": "886"
 	       	},
 	       	"mail": "price",
-            "email": "apteka.kiev@olfa.ua",
+            "address": "apteka.kiev@olfa.ua",
             "name_r": "0",
             "amount_r": "2",
             "first_c": "1"                 
@@ -162,7 +162,7 @@
 	       		"n_vilan": "76"
 	       	},
 	       	"mail": "price",
-            "email": "wylanmed@gmail.com",
+            "address": "wylanmed@gmail.com",
             "name_r": "0",
             "amount_r": "4",
             "first_c": "4"                 
@@ -178,7 +178,7 @@
 	       		"МироваяАптекаБаг8": "967"
 	       	},
 	       	"mail": "price",
-            "email": "mvw.zakaz@gmail.com",
+            "address": "mvw.zakaz@gmail.com",
             "name_r": "0",
             "amount_r": "1",
             "first_c": "2"                 
@@ -193,7 +193,7 @@
 	       		"_zholdi_": "531"
 	       	},
 	       	"mail": "lesmed",
-            "email": "dbf@zholdi.farm",
+            "address": "dbf@zholdi.farm",
             "name_r": "1",
             "amount_r": "2",
             "first_c": "1"                 
@@ -206,7 +206,7 @@
 	       		"_zhold2_": "1080"
 	       	},
 	       	"mail": "lesmed",
-            "email": "zholdi2@ukr.net",
+            "address": "zholdi2@ukr.net",
             "name_r": "0",
             "amount_r": "2",
             "first_c": "0"                 
@@ -219,7 +219,7 @@
 	       		"_ORION_": "69"
 	       	},
 	       	"mail": "lesmed",
-            "email": "orionalphaprice@gmail.com",
+            "address": "orionalphaprice@gmail.com",
             "name_r": "0",
             "amount_r": "4",
             "first_c": "4"                 
@@ -235,9 +235,37 @@
 	       		"revmofa": "999"
 	       	},
 	       	"mail": "price",
-            "email": "kopulovskaya2016@ukr.net",
+            "address": "kopulovskaya2016@ukr.net",
             "name_r": "1",
             "amount_r": "2",
+            "first_c": "1"                 
+        }   
+    ],
+    "Доброго_дня": [
+    	{
+	       	"client": "Dobrogo_dnya",
+	       	"file": "MedDovidka.csv",
+	       	"id":{
+	       		"MedDovidka": "1563"
+	       	},
+	       	"mail": "url",
+            "address": "https://www.add.ua/media/feed/MedDovidka.csv",
+            "name_r": "1",
+            "amount_r": "3",
+            "first_c": "1"                 
+        }   
+    ],
+    "1 Социальная": [
+    	{
+	       	"client": "1_Social",
+	       	"file": "MedDovidka.csv",
+	       	"id":{
+	       		"MedDovidka": "3960"
+	       	},
+	       	"mail": "url",
+            "address": "https://1sa.com.ua/media/feed/MedDovidka.csv",
+            "name_r": "1",
+            "amount_r": "3",
             "first_c": "1"                 
         }   
     ]
