@@ -241,6 +241,19 @@
             "first_c": "1"                 
         }   
     ],
+    "На Артема": [
+    	{
+	       	"client": "Na_Artema",
+	       	"id":{
+	       		"_artem_": "340"
+	       	},
+	       	"mail": "price",
+            "address": "apteka-artema55@ukr.net",
+            "name_r": "1",
+            "amount_r": "2",
+            "first_c": "1"                 
+        }   
+    ],
     "Доброго_дня": [
     	{
 	       	"client": "Dobrogo_dnya",
