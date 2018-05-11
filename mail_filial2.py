@@ -75,15 +75,33 @@ def ftp_l(id, file_ftp):
 
 
 def code_en(s_filename):
-    encodings = ['utf-8', 'windows-1251', 'windows-1252', 'utf-16']
+    encodings = ['utf-8', 'windows-1251', 'windows-1252', 'utf-16', 'CP866']
+    print(s_filename + '__________code')
     for e in encodings:
-        try:
-            read_book = xlrd.open_workbook(s_filename, encoding_override=e, on_demand=True)
-            read_book.sheet_by_index(0)
-        except UnicodeDecodeError:
-            print('got unicode error with %s , trying different encoding' % e)
-        else:
-            return e
+        if s_filename[s_filename.rfind('.'):].lower() == '.xls' or s_filename[s_filename.rfind('.'):].lower() == '.xlsx':
+            print(s_filename[s_filename.rfind('.'):].lower())
+            print(s_filename + '___________if')
+            try:
+                read_book = xlrd.open_workbook(s_filename, encoding_override=e, on_demand=True)
+                read_book.sheet_by_index(0)
+            except UnicodeDecodeError:
+                print('got unicode error with %s , trying different encoding' % e)
+            else:
+                return e
+        elif s_filename[s_filename.rfind('.'):].lower() == '.dbf':
+            print(s_filename + '______elif')
+            try:
+                print(s_filename + '________try')
+                table = DBF(s_filename, encoding=e)
+                for record in table:
+                    record
+            except UnicodeDecodeError:
+                print('got unicode error with %s , trying different encoding' % e)
+            else:
+                print(e)
+                return e
+
+
 
 
 def xls_rows(id, js_xl, source_filename):
@@ -132,7 +150,9 @@ def csv_xls(id, js_cs, csv_file):
 
 
 def dbf_csv(id, js_db, name):
-    table = DBF(name)
+    print(name + '_____csv')
+    table = DBF(name, encoding=code_en(name))
+    print(name + '___?????????????' + str(code_en(name)))
     csv_fn = name[:-4] + ".csv"
 
     with open(csv_fn, 'w') as f:
@@ -167,7 +187,7 @@ def type_file(id, js_tf, filename):
     elif filename[filename.rfind('.'):].lower() == '.csv':
         csv_xls(id, js_tf, filename)
         print(filename + '_conv_csv')
-    elif filename[filename.rfind('.'):].lower() == '.xls' or '.xlsx':
+    elif filename[filename.rfind('.'):].lower() == '.xls' or filename[filename.rfind('.'):].lower() == '.xlsx':
         try:
             xlrd.open_workbook(filename)
         except Exception as er:
@@ -188,7 +208,7 @@ def re_name(js_rn, file_name):
         if fnmatch.fnmatch(file_name, '*%s*' % i):
             id_n = js_rn[0]['id'][i]
             file_p = './mail/' + js_rn[0]['client'] + '/working/'
-            file_n = shutil.copy2(file_name, file_p + id_n + file_name[file_name.rfind('.'):])
+            file_n = shutil.copyfile(file_name, file_p + id_n + file_name[file_name.rfind('.'):])
             type_file(id_n, js_rn, file_n)
             print(file_n)
 
