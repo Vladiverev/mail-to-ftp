@@ -2,27 +2,18 @@ import imaplib
 import email
 import email.message
 import time
-import mimetypes
-import base64
 import email.header
-import quopri
 import zipfile
 import json
 import os
-import sys
 import csv
 from dbfread import DBF
-import glob
-from xlwt import Workbook
-import xlwt, xlrd
-from xlutils.copy import copy as xlcopy
+import xlrd
 from xlwt import Workbook
 import subprocess
-import re
 import shutil
 import fnmatch
 import ftplib
-import openpyxl as xl
 from xml.sax import ContentHandler, parse
 import pandas as pd
 import urllib.request
@@ -76,7 +67,6 @@ def ftp_l(id, file_ftp):
 
 def code_en(s_filename):
     encodings = ['utf-8', 'windows-1251', 'windows-1252', 'utf-16', 'CP866']
-    print(s_filename + '__________code')
     for e in encodings:
         if s_filename[s_filename.rfind('.'):].lower() == '.xls' or s_filename[s_filename.rfind('.'):].lower() == '.xlsx':
             print(s_filename[s_filename.rfind('.'):].lower())
@@ -89,7 +79,6 @@ def code_en(s_filename):
             else:
                 return e
         elif s_filename[s_filename.rfind('.'):].lower() == '.dbf':
-            print(s_filename + '______elif')
             try:
                 print(s_filename + '________try')
                 table = DBF(s_filename, encoding=e)
@@ -100,8 +89,6 @@ def code_en(s_filename):
             else:
                 print(e)
                 return e
-
-
 
 
 def xls_rows(id, js_xl, source_filename):
@@ -189,8 +176,9 @@ def type_file(id, js_tf, filename):
         print(filename + '_conv_csv')
     elif filename[filename.rfind('.'):].lower() == '.xls' or filename[filename.rfind('.'):].lower() == '.xlsx':
         try:
-            xlrd.open_workbook(filename)
+            xlrd.open_workbook(filename, encoding_override=code_en(filename))
         except Exception as er:
+            text.write('\n' + er + '\n')
             if str(er).rfind('xml') > 0:
                 xml_xls(id, js_tf, filename)
                 print(filename + '_read_xml')
@@ -211,8 +199,6 @@ def re_name(js_rn, file_name):
             file_n = shutil.copyfile(file_name, file_p + id_n + file_name[file_name.rfind('.'):])
             type_file(id_n, js_rn, file_n)
             print(file_n)
-
-
 
 
 def main_loop(js_d):
@@ -237,10 +223,6 @@ def main_loop(js_d):
         # msg_id_str = msg_id.decode('utf-8')
         # print("Fetching message {} of {}".format(msg_id_str, nmessages))
         status, msg_data = imap4.fetch(msg_id, '(RFC822)')
-        # print(msg_data)
-        # print(msg_data[0])
-        # print(msg_data[0][1])
-        # print(type(msg_data[0][1]))
         # msg_raw = msg_data
         # print(msg_raw)
         msg = email.message_from_bytes(msg_data[0][1], _class=email.message.EmailMessage)
@@ -280,7 +262,6 @@ def main_loop(js_d):
     imap4.expunge()
     imap4.close()
     imap4.logout()
-
 
 
 def url_f(js_u):
