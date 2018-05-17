@@ -17,6 +17,7 @@ import ftplib
 from xml.sax import ContentHandler, parse
 import pandas as pd
 import urllib.request
+import requests
 
 Pharmacy = 'pharmacy.json'
 Mail_login = 'm_login.json'
