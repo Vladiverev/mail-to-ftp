@@ -1,0 +1,19 @@
+{
+    "price": [
+        {
+        	"Miro_HOST": "",
+        	"Miro_PORT": "",
+        	"Miro_USER": "",
+        	"Miro_PASSWORD": ""
+        }        
+    ],
+    "lesmed": [
+        {
+        	"Miro_HOST": "",
+        	"Miro_PORT": "",
+        	"Miro_USER": "",
+        	"Miro_PASSWORD": ""
+        }        
+    ]
+}
+
