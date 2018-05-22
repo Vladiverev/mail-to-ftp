@@ -212,6 +212,21 @@
             "first_c": "0"                 
         }   
     ],
+    "Жолди3": [
+    	{
+	       	"client": "Zholdi3",
+	       	"id":{
+	       		"_zholdi4_": "3980",
+	       		"_zholdi3_": "3956",
+	       		"_zholdi_": "531"
+	       	},
+	       	"mail": "lesmed",
+            "address": "zav-za01@zholdi.farm",
+            "name_r": "0",
+            "amount_r": "2",
+            "first_c": "0"                 
+        }   
+    ],
     "Орион": [
     	{
 	       	"client": "Orion",
@@ -251,34 +266,6 @@
             "address": "apteka-artema55@ukr.net",
             "name_r": "1",
             "amount_r": "2",
-            "first_c": "1"                 
-        }   
-    ],
-    "Доброго_дня": [
-    	{
-	       	"client": "Dobrogo_dnya",
-	       	"file": "MedDovidka.csv",
-	       	"id":{
-	       		"MedDovidka": "1563"
-	       	},
-	       	"mail": "url",
-            "address": "https://www.add.ua/media/feed/MedDovidka.csv",
-            "name_r": "1",
-            "amount_r": "3",
-            "first_c": "1"                 
-        }   
-    ],
-    "1 Социальная": [
-    	{
-	       	"client": "1_Social",
-	       	"file": "MedDovidka.csv",
-	       	"id":{
-	       		"MedDovidka": "3960"
-	       	},
-	       	"mail": "url",
-            "address": "https://1sa.com.ua/media/feed/MedDovidka.csv",
-            "name_r": "1",
-            "amount_r": "3",
             "first_c": "1"                 
         }   
     ]
